@@ -130,8 +130,8 @@ const Signup = () => {
             <p className="text-center mt-5 ">
               Already Have an Account ?
               <Link
-                to="./Signin"
-                className="text-yellow-600 font-bold cursor-pointer ml-1"
+                to="/login"
+                className="text-yellow-600 font-nunito cursor-pointer ml-1"
               >
                 login
               </Link>
