@@ -24,7 +24,7 @@ const Login = () => {
   let handleSubmit = () => {
     if (!email) {
       setEmailerror("Email is required");
-    } else if (!/^\w+([\.-]?\w+)*@w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+    } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       setEmailerror("Invalid Email");
     }
 
@@ -117,7 +117,7 @@ const Login = () => {
       </div>
       <div className="w-2/4 h-full ">
         <img
-          className="ml-auto h-full object-cover"
+          className="w-full h-full object-cover"
           src={SignupImage}
           alt="SignupImage"
         />

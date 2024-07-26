@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import SignupImage from "../assets/Signup.jpeg";
 import { IoIosEye, IoIosEyeOff } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 
 const Signup = () => {
+  const auth = getAuth();
   let [email, setEmail] = useState("");
   let [name, setName] = useState("");
   let [pass, setPass] = useState("");
@@ -29,7 +31,7 @@ const Signup = () => {
   let handleSubmit = () => {
     if (!email) {
       setEmailerr("Email is required");
-    } else if (!/^\w+([\.-]?\w+)*@w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+    } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
       setEmailerr("Invalid Email");
     }
 
@@ -38,6 +40,19 @@ const Signup = () => {
     }
     if (!pass) {
       setPasserr("Password is required");
+    }
+
+    if (email && name && pass) {
+      createUserWithEmailAndPassword(auth, email, pass)
+        .then((userCredential) => {
+          const user = userCredential.user;
+        })
+        .catch((error) => {
+          console.log(error);
+          // const errorCode = error.code;
+          // const errorMessage = error.message;
+          // // ..
+        });
     }
   };
 
@@ -130,7 +145,7 @@ const Signup = () => {
             <p className="text-center mt-5 ">
               Already Have an Account ?
               <Link
-                to="/login"
+                to="/"
                 className="text-yellow-600 font-nunito cursor-pointer ml-1"
               >
                 login
